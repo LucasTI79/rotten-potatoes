@@ -28,5 +28,5 @@ jobs:
           push: true
           tags: |
             lucasti79/rotten-potatoes:latest 
-            lucasti79/rotten-potatoes:${{ github.run_number }}
+            lucasti79/rotten-potatoes:v${{ github.run_number }}
 
