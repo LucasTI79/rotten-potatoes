@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
       - name: web
-        image:  lucasti79/rotten-potatoes:v1
+        image:  lucasti79/rotten-potatoes:1
         env:
         - name: MONGODB_DB
           value: admin
@@ -87,4 +87,4 @@ spec:
     targetPort: 5000
     nodePort: 30000
   type: LoadBalancer
-  
+
