@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
       - name: web
-        image:  lucasti79/rotten-potatoes:1
+        image:  lucasti79/rotten-potatoes:latest
         env:
         - name: MONGODB_DB
           value: admin
