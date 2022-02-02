@@ -1,4 +1,4 @@
-name: CI-CD
+name: CI
 on:
   push:
     branches: [ main ]
@@ -23,5 +23,27 @@ jobs:
           push: true
           tags: |
             lucasti79/rotten-potatoes:latest
-            lucasti79/rotten-potatoes:${{github.run_number}}
+            lucasti79/rotten-potatoes:${{github.run_number}} 
+            
+  CD:
+    runs-on: ubuntu-latest
+    needs: [CI]
+    steps:
+      - uses: actions/checkout@v2
+  
+      - name: Kubernetes set context
+        uses: Azure/k8s-set-context@v1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{secrets.K8S_KUBECONFIG}}  
+          
+      - name: Deploy to Kubernetes cluster
+        uses: Azure/k8s-deploy@v1.5
+        with:
+          manifests: |
+            k8s/deployment.yaml
+          images: lucasti79/rotten-potatoes:${{github.run_number}}
+          
+
+
 
